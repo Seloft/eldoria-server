@@ -1,0 +1,41 @@
+services:
+  minecraft:
+    build: 
+      context: .
+      args:
+        MC_VERSION: "1.21.1"
+        FABRIC_LOADER_VERSION: "0.18.0"
+        INSTALLER_VERSION: "1.1.0"
+    image: my-mc:latest
+    container_name: minecraft-server
+    restart: unless-stopped
+    ports:
+      - "25565:25565"
+    volumes:
+      - minecraft-world:/minecraft/world
+      - minecraft-logs:/minecraft/logs
+      - minecraft-backups:/minecraft/backups
+      - ./server-config/server.properties:/minecraft/server.properties:ro
+    environment:
+      - MEMORY=-Xmx6G -Xms2G
+      - TZ=America/Sao_Paulo
+    healthcheck:
+      test: ["CMD-SHELL", "nc -z localhost 25565 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    networks:
+      - minecraft-net
+
+networks:
+  minecraft-net:
+    driver: bridge
+
+volumes:
+  minecraft-world:
+    driver: local
+  minecraft-logs:
+    driver: local
+  minecraft-backups:
+    driver: local

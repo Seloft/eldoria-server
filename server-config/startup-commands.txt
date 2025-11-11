@@ -1,0 +1,15 @@
+# Comandos executados automaticamente na primeira inicialização do servidor
+# Um comando por linha, linhas iniciadas com # são comentários
+
+# Define o spawn do mundo em 0,0
+setworldspawn 0 ~ 0
+
+# Anuncia que o servidor foi configurado
+say Servidor configurado! Spawn definido em coordenada 0,0
+
+# Exemplos de outros comandos úteis (remova o # para ativar):
+# gamerule doDaylightCycle false
+# time set day
+# weather clear
+# difficulty normal
+# gamerule keepInventory true

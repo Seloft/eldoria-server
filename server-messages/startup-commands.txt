@@ -1,0 +1,17 @@
+# Comandos executados automaticamente na primeira inicialização do servidor
+# Um comando por linha, linhas iniciadas com # são comentários
+
+setworldspawn 0 ~ 0
+defaultgamemode survival
+time set 0
+weather clear
+difficulty normal
+gamerule keepInventory false
+gamerule doMobSpawning true
+gamemode @a survival
+
+say Servidor configurado com sucesso
+say Aproveite a jogatina ;D
+
+# Anuncia que o servidor foi configurado
+say Servidor configurado com sucesso!

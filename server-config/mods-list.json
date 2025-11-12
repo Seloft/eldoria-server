@@ -1,0 +1,62 @@
+[
+    {
+        "modname": "Fabric API",
+        "version": "0.116.7",
+        "url-download": "https://mediafilez.forgecdn.net/files/7081/224/fabric-api-0.116.7%2B1.21.1.jar",
+        "url-info": "https://www.curseforge.com/minecraft/mc-mods/fabric-api/files/7081224"
+    },
+    {
+        "modname": "Balm",
+        "version": "21.0.53",
+        "url-download": "https://mediafilez.forgecdn.net/files/7087/251/balm-fabric-1.21.1-21.0.53.jar",
+        "url-info": "https://www.curseforge.com/minecraft/mc-mods/balm-fabric/files/7087251"
+    },
+    {
+        "modname": "Framework",
+        "version": "0.9.6",
+        "url-download": "https://mediafilez.forgecdn.net/files/6531/437/framework-fabric-1.21.1-0.9.6.jar",
+        "url-info": "https://www.curseforge.com/minecraft/mc-mods/framework/files/6531437"
+    },
+    {
+        "modname": "Accessories",
+        "version": "1.1.0-beta.52",
+        "url-download": "https://mediafilez.forgecdn.net/files/7046/412/accessories-fabric-1.1.0-beta.52%2B1.21.1.jar",
+        "url-info": "https://www.curseforge.com/minecraft/mc-mods/accessories/files/7046412"
+    },
+    {
+        "modname": "WoW",
+        "version": "0.12.15.4",
+        "url-download": "https://mediafilez.forgecdn.net/files/6446/6/owo-lib-0.12.15.4%2B1.21.jar",
+        "url-info": "https://www.curseforge.com/minecraft/mc-mods/owo-lib"
+    },
+    {
+        "modname": "Simple Voice Chat",
+        "version": "2.6.6",
+        "url-download": "https://mediafilez.forgecdn.net/files/7117/44/voicechat-fabric-1.21.1-2.6.6.jar",
+        "url-info": "https://www.curseforge.com/minecraft/mc-mods/simple-voice-chat/files/all?page=1&pageSize=20&showAlphaFiles=hide"
+    },
+    {
+        "modname": "JEI (Just Enough Items)",
+        "version": "19.21.2.313",
+        "url-download": "https://mediafilez.forgecdn.net/files/6614/390/jei-1.21.1-fabric-19.21.2.313.jar",
+        "url-info": "https://www.curseforge.com/minecraft/mc-mods/jei/files/all?page=1&pageSize=20&version=1.21.1&gameVersionTypeId=4&showAlphaFiles=hide"
+    },
+    {
+        "modname": "JornaryMap",
+        "version": "6.0.0-beta.52",
+        "url-download": "https://mediafilez.forgecdn.net/files/6689/205/journeymap-fabric-1.21.1-6.0.0-beta.52.jar",
+        "url-info": "https://www.curseforge.com/minecraft/mc-mods/journeymap/files/6689205"
+    },
+    {
+        "modname": "Waystones",
+        "version": "21.1.23",
+        "url-download": "https://mediafilez.forgecdn.net/files/6976/673/waystones-fabric-1.21.1-21.1.23.jar",
+        "url-info": "https://www.curseforge.com/minecraft/mc-mods/waystones"
+    },
+    {
+        "modname": "Backpacked",
+        "version": "1.9.3",
+        "url-download": "https://mediafilez.forgecdn.net/files/5852/971/backpacked-fabric-1.21.1-3.0.0-beta.10.jar",
+        "url-info": "https://www.curseforge.com/minecraft/mc-mods/backpacked/files/all?page=1&pageSize=20&gameVersionTypeId=4&showAlphaFiles=hide"
+    }
+]

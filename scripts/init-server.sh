@@ -49,18 +49,6 @@ fi
 log_info "Essential directories created successfully"
 echo
 
-# Download mods if mods directory is empty or has only processedMods
-if [ ! "$(find /minecraft/mods -name "*.jar" -type f 2>/dev/null)" ]; then
-    log_info "No mods found, downloading mods..."
-    if [ -x "/minecraft/get-mods.sh" ]; then
-        /minecraft/get-mods.sh
-    else
-        log_warn "get-mods.sh not found or not executable"
-    fi
-else
-    log_info "Mods already present in /minecraft/mods/"
-fi
-
 # Set proper permissions
 log_info "Setting directory permissions..."
 chmod -R 755 server-world logs backups mods

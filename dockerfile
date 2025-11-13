@@ -24,10 +24,6 @@ RUN apt-get update \
         ca-certificates \
         curl=7.81.0-* \
         netcat-openbsd=1.* \
-        screen \
-        python3 \
-        python3-pip \
-    && pip3 install mcrcon \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -56,9 +52,8 @@ COPY server-config/mods-list.json /minecraft-template/
 # Copy scripts and set permissions
 COPY scripts/run-server.sh /minecraft-template/
 COPY scripts/init-server.sh /minecraft-template/
-COPY scripts/get-mods.sh /minecraft-template/
 
-RUN chmod +x /minecraft-template/run-server.sh /minecraft-template/init-server.sh /minecraft-template/get-mods.sh \
+RUN chmod +x /minecraft-template/run-server.sh /minecraft-template/init-server.sh \
     && chmod 644 /minecraft-template/server.properties \
     && chmod 644 /minecraft-template/server-messages/*
 

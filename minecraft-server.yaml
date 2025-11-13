@@ -1,4 +1,26 @@
 services:
+  monitor:
+    build: 
+      context: ./monitor
+    image: minecraft-monitor:latest
+    container_name: minecraft-monitor
+    restart: unless-stopped
+    volumes:
+      - ./server-config/mods-list.json:/app/mods-list.json:ro
+      
+      - minecraft-logs:/minecraft/logs:ro
+      - minecraft-world:/minecraft/server-world:ro
+      - minecraft-mods:/minecraft/mods
+      
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - monitor-cache:/app/cache
+    networks:
+      - minecraft-net
+    environment:
+      - PYTHONPATH=/app
+      - TZ=America/Sao_Paulo
+      - CHECK_INTERVAL=60
+
   minecraft:
     build: 
       context: .
@@ -14,7 +36,6 @@ services:
       - "24454:24454/udp" 
       - "24454:24454/tcp"
     volumes:
-      - ./minecraft-data/backups:/minecraft/backups
       - ./server-config/server.properties:/minecraft/server.properties:ro
       - ./server-config/voicechat-server.properties:/minecraft/config/voicechat/voicechat-server.properties:ro
 
@@ -43,4 +64,6 @@ volumes:
   minecraft-logs:
     driver: local
   minecraft-mods:
+    driver: local
+  monitor-cache:
     driver: local

@@ -58,17 +58,69 @@ chmod 755 /minecraft
 if [ ! -f "server.properties" ]; then
     log_info "Creating default server.properties..."
     cat > server.properties << 'EOF'
-          server-port=25565
-          max-players=20
-          online-mode=true
-          white-list=false
-          gamemode=survival
+          accepts-transfers=false
+          allow-flight=false
+          allow-nether=true
+          broadcast-console-to-ops=true
+          bug-report-link=
           difficulty=normal
-          pvp=true
           enable-command-block=false
+          enable-jmx-monitoring=false
+          enable-query=false
+          enable-status=true
+          enforce-secure-profile=true
+          enforce-whitelist=false
+          entity-broadcast-range-percentage=100
+          force-gamemode=false
+          function-permission-level=2
+          gamemode=survival
+          generate-structures=true
+          generator-settings={}
+          hardcore=false
+          hide-online-players=false
+          initial-disabled-packs=
+          initial-enabled-packs=vanilla
+          level-broadcast-range-percentage=100
           level-name=server-world
-          motd=Welcome to ELdoria!
-          server-name=ELdoria
+          level-seed=
+          level-type=minecraft\:normal
+          log-ips=true
+          max-chained-neighbor-updates=1000000
+          max-players=20
+          max-tick-time=60000
+          max-world-size=29999984
+          motd=Minecraft Server
+          network-compression-threshold=256
+          online-mode=true
+          op-permission-level=4
+          player-idle-timeout=0
+          prevent-proxy-connections=false
+          pvp=true
+          query.port=25565
+          rate-limit=0
+          enable-rcon=true
+          rcon.port=25575
+          rcon.password=
+          broadcast-rcon-to-ops=true
+          region-file-compression=deflate
+          require-resource-pack=false
+          resource-pack=
+          resource-pack-id=
+          resource-pack-prompt=
+          resource-pack-sha1=
+          server-ip=
+          server-port=25565
+          simulation-distance=10
+          spawn-animals=true
+          spawn-monsters=true
+          spawn-npcs=true
+          spawn-protection=7
+          sync-chunk-writes=true
+          text-filtering-config=
+          use-native-transport=true
+          view-distance=10
+          white-list=false
+          spawn-radius=1
 EOF
 chmod 644 server.properties
 log_info "server.properties configured"

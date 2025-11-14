@@ -1,4 +1,7 @@
 minecraft-data/
 commands.txt
+server.properties
 
 .venv/
+config/
+backups/

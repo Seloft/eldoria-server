@@ -1,12 +1,12 @@
 services:
   monitor:
     build: 
-      context: ./monitor
-    image: minecraft-monitor:latest
-    container_name: minecraft-monitor
+      context: ./monitor-system
+    image: minecraft-monitor-system:latest
+    container_name: minecraft-monitor-system
     restart: unless-stopped
     volumes:
-      - ./server-config/mods-list.json:/app/mods-list.json:ro
+      - ./server-files/mods-list.json:/app/mods-list.json:ro
       
       - minecraft-logs:/minecraft/logs:ro
       - minecraft-world:/minecraft/server-world:ro
@@ -14,12 +14,34 @@ services:
       
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - monitor-cache:/app/cache
+    depends_on:
+      - minecraft
     networks:
       - minecraft-net
     environment:
       - PYTHONPATH=/app
       - TZ=America/Sao_Paulo
       - CHECK_INTERVAL=60
+
+  backup-system:
+    build: 
+      context: ./backup-system
+    image: minecraft-backup-system:latest
+    container_name: minecraft-backup-system
+    restart: unless-stopped
+    volumes:
+      - ./backups:/app/backups
+
+      - minecraft-world:/minecraft/server-world:ro
+    networks:
+      - minecraft-net
+    depends_on:
+      - minecraft
+    environment:
+      - PYTHONPATH=/app
+      - TZ=America/Sao_Paulo
+      - KEEP_BACKUPS=5
+      - BACKUP_INTERVAL=3600
 
   minecraft:
     build: 
@@ -33,11 +55,16 @@ services:
     restart: unless-stopped
     ports:
       - "25565:25565"
+      - "25575:25575"
       - "24454:24454/udp" 
       - "24454:24454/tcp"
     volumes:
-      - ./server-config/server.properties:/minecraft/server.properties:ro
-      - ./server-config/voicechat-server.properties:/minecraft/config/voicechat/voicechat-server.properties:ro
+      - ./config:/minecraft/config
+      - ./config/ops.json:/minecraft/ops.json:ro
+      - ./config/server.properties:/minecraft/server.properties:ro
+      - ./config/whitelist.json:/minecraft/whitelist.json:ro
+      - ./config/banned-ips.json:/minecraft/banned-ips.json:ro
+      - ./config/banned-players.json:/minecraft/banned-players.json:ro
 
       - minecraft-world:/minecraft/server-world
       - minecraft-mods:/minecraft/mods

@@ -12,7 +12,7 @@ ENV MC_VERSION="${MC_VERSION}" \
     MEMORY="-Xmx4G -Xms2G"
 
 # Labels for metadata
-LABEL version="1.0" \
+LABEL version="1.3" \
       description="Minecraft Fabric Server" \
       mc.version="${MC_VERSION}" \
       fabric.version="${FABRIC_LOADER_VERSION}"
@@ -43,19 +43,18 @@ RUN wget -O "fabric-server-mc.${MC_VERSION}-loader.${FABRIC_LOADER_VERSION}-laun
 RUN echo "eula=true" > /minecraft-template/eula.txt
 
 # files to template
-COPY server-messages/ /minecraft-template/server-messages/
+COPY server-files/ /minecraft-template/server-files/
 
 # Copy configuration files
-COPY server-config/server.properties /minecraft-template/
-COPY server-config/mods-list.json /minecraft-template/
+COPY config/server.properties /minecraft-template/
+COPY server-files/mods-list.json /minecraft-template/
 
 # Copy scripts and set permissions
 COPY scripts/run-server.sh /minecraft-template/
 COPY scripts/init-server.sh /minecraft-template/
 
 RUN chmod +x /minecraft-template/run-server.sh /minecraft-template/init-server.sh \
-    && chmod 644 /minecraft-template/server.properties \
-    && chmod 644 /minecraft-template/server-messages/*
+    && chmod 644 /minecraft-template/server-files/*
 
 # Set final working directory
 WORKDIR /minecraft

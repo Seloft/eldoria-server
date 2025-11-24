@@ -27,6 +27,12 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+RUN wget https://github.com/itzg/rcon-cli/releases/download/1.6.4/rcon-cli_1.6.4_linux_amd64.tar.gz \
+    && tar -xzf rcon-cli_1.6.4_linux_amd64.tar.gz \
+    && mv rcon-cli /usr/local/bin/ \
+    && chmod +x /usr/local/bin/rcon-cli \
+    && rm rcon-cli_1.6.4_linux_amd64.tar.gz
+
 # Create directories
 RUN mkdir -p /minecraft-template /minecraft
 
@@ -42,19 +48,15 @@ RUN wget -O "fabric-server-mc.${MC_VERSION}-loader.${FABRIC_LOADER_VERSION}-laun
 # Accept EULA in template
 RUN echo "eula=true" > /minecraft-template/eula.txt
 
-# files to template
-COPY server-files/ /minecraft-template/server-files/
-
 # Copy configuration files
-COPY config/server.properties /minecraft-template/
-COPY server-files/mods-list.json /minecraft-template/
+COPY server.properties /minecraft-template/
 
 # Copy scripts and set permissions
 COPY scripts/run-server.sh /minecraft-template/
 COPY scripts/init-server.sh /minecraft-template/
 
 RUN chmod +x /minecraft-template/run-server.sh /minecraft-template/init-server.sh \
-    && chmod 644 /minecraft-template/server-files/*
+    && echo "Scripts permissions set."
 
 # Set final working directory
 WORKDIR /minecraft

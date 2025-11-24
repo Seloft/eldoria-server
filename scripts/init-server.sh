@@ -40,7 +40,7 @@ cd /minecraft
 
 # Create essential directories
 log_info "Creating essential directories..."
-mkdir -p server-world logs backups mods
+mkdir -p server-world logs mods
 
 if [ $? -ne 0 ]; then
     log_error "Failed to create essential directories"
@@ -51,7 +51,7 @@ echo
 
 # Set proper permissions
 log_info "Setting directory permissions..."
-chmod -R 755 server-world logs backups mods
+chmod -R 755 server-world logs mods
 chmod 755 /minecraft
 
 # Ensure server.properties exists
@@ -140,7 +140,7 @@ chmod 644 eula.txt
 log_info "Testing directory permissions..."
 echo
 
-for dir in logs server-world backups; do
+for dir in logs server-world; do
     if touch "$dir/test.tmp" 2>/dev/null; then
         rm -f "$dir/test.tmp"
         log_info "$dir directory is writable"

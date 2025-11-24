@@ -61,9 +61,6 @@ fi
 JAVA_VERSION=$(java -version 2>&1 | head -n 1)
 log_info "Java: $JAVA_VERSION"
 
-# Create necessary directories
-mkdir -p logs server-world backups
-
 # Start the Minecraft server
 echo
 log_info "Starting Minecraft server..."

@@ -1,0 +1,117 @@
+services:
+
+  backup-system:
+    build: 
+      context: ../minecraft-backup # Adjust the path as necessary
+      dockerfile: dockerfile
+    image: minecraft-backup:latest
+    container_name: minecraft-backup
+    restart: unless-stopped
+    volumes:
+      - minecraft-backups:/minecraft/backups
+      - minecraft-world:/minecraft/server-world:ro
+    networks:
+      - minecraft-net
+    depends_on:
+      - minecraft
+    environment:
+      - PYTHONPATH=/app
+      - TZ=America/Sao_Paulo
+      - KEEP_BACKUPS=5
+      - BACKUP_INTERVAL=3600
+
+  minecraft-backend:
+    build:
+      context: ../minecraft-backend # Adjust the path as necessary
+      dockerfile: dockerfile
+    image: minecraft-backend:latest
+    container_name: minecraft-backend
+    restart: unless-stopped
+    volumes:
+      - minecraft-mods:/minecraft/mods
+      - minecraft-logs:/minecraft/logs
+      - minecraft-config:/minecraft/config
+      - minecraft-world:/minecraft/server-world
+      - backend-config:/app/config
+      - /var/run/docker.sock:/var/run/docker.sock
+    expose:
+      - "8000"
+    networks:
+      - minecraft-net
+    depends_on:
+      - minecraft
+    environment:
+      - TZ=America/Sao_Paulo
+      - ALLOWED_ORIGINS=http://minecraft-frontend
+      - MINECRAFT_RCON_PASSWORD=mgmm4103
+      - MODRINTH_AUTHORIZATION=mrp_dQpTYX5oosea7nlVRrWexYOKyXni1chheeOgDRd9EyBQUEXuQWwl7IOG5iOu
+
+  minecraft-frontend:
+    build:
+      context: ../minecraft-frontend # Adjust the path as necessary
+      dockerfile: dockerfile
+    image: minecraft-frontend:latest
+    container_name: minecraft-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - minecraft-net
+    depends_on:
+      - minecraft-backend
+    environment:
+      - TZ=America/Sao_Paulo
+
+  minecraft:
+    build: 
+      context: .
+      dockerfile: dockerfile
+      args:
+        MC_VERSION: "1.21.1"
+        FABRIC_LOADER_VERSION: "0.18.0"
+        INSTALLER_VERSION: "1.1.0"
+    image: minecraft-server:latest
+    container_name: minecraft-server
+    restart: unless-stopped
+    ports:
+      - "25565:25565"
+      - "24454:24454/udp" 
+      - "24454:24454/tcp"
+    volumes:
+      - minecraft-config:/minecraft/config
+      - minecraft-world:/minecraft/server-world
+      - minecraft-mods:/minecraft/mods
+      - minecraft-logs:/minecraft/logs
+      - minecraft-server.properties:/minecraft/server.properties
+    environment:
+      - MEMORY=-Xmx6G -Xms3G
+      - TZ=America/Sao_Paulo
+    healthcheck:
+      test: ["CMD-SHELL", "nc -z localhost 25565 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    networks:
+      - minecraft-net
+
+networks:
+  minecraft-net:
+    driver: bridge
+
+volumes:
+  minecraft-world:
+    driver: local
+  minecraft-logs:
+    driver: local
+  minecraft-mods:
+    driver: local
+  minecraft-backups:
+    driver: local
+  minecraft-config:
+    driver: local
+  backend-config:
+    driver: local
+  minecraft-server.properties:
+    driver: local

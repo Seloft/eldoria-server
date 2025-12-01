@@ -2,7 +2,7 @@ services:
 
   backup-system:
     build: 
-      context: ../minecraft-backup
+      context: ../eldoria-backup
       dockerfile: dockerfile
     image: minecraft-backup:latest
     container_name: minecraft-backup
@@ -22,7 +22,7 @@ services:
 
   minecraft-backend:
     build:
-      context: ../minecraft-backend
+      context: ../eldoria-backend
       dockerfile: dockerfile
     image: minecraft-backend:latest
     container_name: minecraft-backend
@@ -48,7 +48,7 @@ services:
 
   minecraft-frontend:
     build:
-      context: ../minecraft-frontend
+      context: ../eldoria-frontend
       dockerfile: dockerfile
     image: minecraft-frontend:latest
     container_name: minecraft-frontend

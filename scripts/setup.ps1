@@ -10,9 +10,9 @@ $PARENT_DIR = Split-Path -Parent $BASE_DIR
 
 # Repositories to clone
 $REPOS = @(
-    "minecraft-backup",
-    "minecraft-backend",
-    "minecraft-frontend"
+    "eldoria-backup",
+    "eldoria-backend",
+    "eldoria-frontend"
 )
 
 function Write-ColorOutput {

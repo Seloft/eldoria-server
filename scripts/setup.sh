@@ -32,9 +32,9 @@ PARENT_DIR="$(dirname "$BASE_DIR")"
 
 # Repositories to clone
 REPOS=(
-    "minecraft-backup"
-    "minecraft-backend"
-    "minecraft-frontend"
+    "eldoria-backup"
+    "eldoria-backend"
+    "eldoria-frontend"
 )
 
 echo -e "${BLUE}"

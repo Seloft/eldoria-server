@@ -5,3 +5,5 @@ server.properties
 .venv/
 config/
 backups/
+
+.env

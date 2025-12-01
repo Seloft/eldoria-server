@@ -83,7 +83,6 @@ services:
       - minecraft-world:/minecraft/server-world
       - minecraft-mods:/minecraft/mods
       - minecraft-logs:/minecraft/logs
-      - minecraft-server.properties:/minecraft/server.properties
     environment:
       - MEMORY=${MEMORY}
       - TZ=${TZ}
@@ -112,6 +111,4 @@ volumes:
   minecraft-config:
     driver: local
   backend-config:
-    driver: local
-  minecraft-server.properties:
     driver: local

@@ -24,6 +24,7 @@ RUN apt-get update \
         ca-certificates \
         curl=7.81.0-* \
         netcat-openbsd=1.* \
+        sed \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -51,11 +52,12 @@ RUN echo "eula=true" > /minecraft-template/eula.txt
 # Copy configuration files
 COPY server.properties /minecraft-template/
 
-# Copy scripts and set permissions
+# Copy scripts and convert line endings to Unix format, then set permissions
 COPY scripts/run-server.sh /minecraft-template/
 COPY scripts/init-server.sh /minecraft-template/
 
-RUN chmod +x /minecraft-template/run-server.sh /minecraft-template/init-server.sh \
+RUN sed -i 's/\r$//' /minecraft-template/run-server.sh /minecraft-template/init-server.sh \
+    && chmod +x /minecraft-template/run-server.sh /minecraft-template/init-server.sh \
     && echo "Scripts permissions set."
 
 # Set final working directory

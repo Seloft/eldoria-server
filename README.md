@@ -131,7 +131,7 @@ TZ=America/Sao_Paulo
 
 4. **Inicie os serviços**
 ```bash
-docker compose -f minecraft-server.yaml up -d --build
+docker compose -f eldoria-server.yaml up -d --build
 ```
 
 5. **Acesse a interface**
@@ -153,19 +153,19 @@ Abra o navegador em: **http://localhost**
 
 ```bash
 # Ver status dos containers
-docker compose -f minecraft-server.yaml ps
+docker compose -f eldoria-server.yaml ps
 
 # Ver logs do servidor Minecraft
-docker compose -f minecraft-server.yaml logs -f minecraft
+docker compose -f eldoria-server.yaml logs -f minecraft
 
 # Parar todos os serviços
-docker compose -f minecraft-server.yaml down
+docker compose -f eldoria-server.yaml down
 
 # Reconstruir e reiniciar
-docker compose -f minecraft-server.yaml up -d --build
+docker compose -f eldoria-server.yaml up -d --build
 
 # Executar comando RCON
-docker exec minecraft-server rcon-cli -p <password> "<comando>"
+docker exec eldoria-server rcon-cli -p <password> "<comando>"
 ```
 
 ---

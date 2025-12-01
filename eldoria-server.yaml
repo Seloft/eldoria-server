@@ -11,7 +11,7 @@ services:
       - eldoria-server:/minecraft
       - eldoria-backups:/backups
     networks:
-      - minecraft-net
+      - eldoria-net
     depends_on:
       - eldoria-server
     environment:
@@ -34,7 +34,7 @@ services:
     expose:
       - "8000"
     networks:
-      - minecraft-net
+      - eldoria-net
     depends_on:
       - eldoria-server
     environment:
@@ -54,7 +54,7 @@ services:
       - "80:80"
       - "443:443"
     networks:
-      - minecraft-net
+      - eldoria-net
     depends_on:
       - eldoria-backend
     environment:
@@ -87,10 +87,10 @@ services:
       retries: 3
       start_period: 60s
     networks:
-      - minecraft-net
+      - eldoria-net
 
 networks:
-  minecraft-net:
+  eldoria-net:
     driver: bridge
 
 volumes:

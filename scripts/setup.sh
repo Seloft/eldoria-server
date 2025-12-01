@@ -132,7 +132,7 @@ MINECRAFT_RCON_PASSWORD=change_me_in_production
 MODRINTH_AUTHORIZATION=your_modrinth_token_here
 
 # Allowed Origins for Backend
-ALLOWED_ORIGINS=http://minecraft-frontend,http://localhost
+ALLOWED_ORIGINS=http://eldoria-frontend,http://localhost
 
 # Backup Configuration
 KEEP_BACKUPS=5
@@ -160,8 +160,8 @@ echo
 
 echo "Next steps:"
 echo "  1. Edit .env file with your configuration"
-echo "  2. Run: docker compose -f minecraft-server.yaml build"
-echo "  3. Run: docker compose -f minecraft-server.yaml up -d"
+echo "  2. Run: docker compose -f eldoria-server.yaml build"
+echo "  3. Run: docker compose -f eldoria-server.yaml up -d"
 echo
 
 log_info "Happy gaming! 🎮"

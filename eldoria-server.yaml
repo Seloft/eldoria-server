@@ -60,6 +60,15 @@ services:
     environment:
       - TZ=${TZ}
 
+  certbot:
+    image: certbot/certbot
+    container_name: eldoria-certbot
+    restart: unless-stopped
+    volumes:
+      - certbot-conf:/etc/letsencrypt
+      - certbot-www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+
   eldoria-server:
     build: 
       context: .
@@ -99,4 +108,6 @@ volumes:
   backend-config:
     driver: local
   eldoria-backups:
+    driver: local
+  certbot-conf:
     driver: local
